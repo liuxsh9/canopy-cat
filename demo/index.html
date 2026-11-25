@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CanopyCat — Pixel Seasonal Tree &amp; Interactive Cat Companion</title>
+  <meta name="description" content="A tiny, zero-dependency pixel seasonal tree and interactive cat companion for any website." />
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --surface: #ffffff;
+      --surface-2: #f9fafb;
+      --border: #e5e7eb;
+      --text: #111827;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --stage-top: #fcfdff;
+      --stage-bottom: #eef2f7;
+      --stage-ground: #dde3ec;
+      --code-bg: #0f172a;
+      --code-text: #e2e8f0;
+      --radius: 14px;
+    }
+    [data-theme="dark"] {
+      --bg: #0f131a;
+      --surface: #171c26;
+      --surface-2: #1e2533;
+      --border: #2a3345;
+      --text: #f3f4f6;
+      --muted: #94a3b8;
+      --accent: #60a5fa;
+      --accent-soft: rgba(96, 165, 250, 0.14);
+      --stage-top: #151a24;
+      --stage-bottom: #1c2432;
+      --stage-ground: #283246;
+      --code-bg: #0b0f17;
+      --code-text: #e2e8f0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      transition: background 0.2s, color 0.2s;
+    }
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 28px 20px 64px;
+      display: grid;
+      gap: 20px;
+    }
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+    .brand p {
+      margin: 4px 0 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn {
+      font: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 7px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .btn:hover { background: var(--surface-2); border-color: var(--accent); }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; }
+    }
+    .stage-card {
+      position: relative;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--stage-top) 0%, var(--stage-bottom) 84%, var(--stage-ground) 84%, var(--stage-bottom) 100%);
+      min-height: 410px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px;
+      overflow: visible;
+    }
+    .stage-hint {
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .stage-mount {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      flex: 1;
+      padding-top: 12px;
+    }
+    .action-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border);
+    }
+    .chip {
+      font: inherit;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: transform 0.1s, border-color 0.15s, background 0.15s;
+    }
+    .chip:hover { border-color: var(--accent); background: var(--accent-soft); }
+    .chip:active { transform: scale(0.96); }
+
+    .controls-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      padding: 16px;
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      margin: 0 0 8px;
+    }
+    .season-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+    }
+    .season-btn {
+      font: inherit;
+      font-size: 12px;
+      padding: 8px 6px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text);
+      cursor: pointer;
+      display: grid;
+      gap: 2px;
+      text-align: center;
+    }
+    .season-btn small { font-size: 10px; color: var(--muted); }
+    .season-btn.active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+    }
+    .cat-btn {
+      font: inherit;
+      font-size: 12px;
+      padding: 5px 8px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-align: left;
+    }
+    .cat-btn.active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+    .cat-btn canvas {
+      width: 30px;
+      height: 26px;
+      image-rendering: pixelated;
+      flex: none;
+    }
+    .weather-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+    .slider-row {
+      display: grid;
+      gap: 4px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .slider-head { display: flex; justify-content: space-between; }
+    .slider-row input { width: 100%; accent-color: var(--accent); }
+
+    .embed-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+    .embed-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .tabs { display: flex; gap: 6px; }
+    pre {
+      margin: 0;
+      padding: 14px 16px;
+      border-radius: 10px;
+      background: var(--code-bg);
+      color: var(--code-text);
+      font-size: 13px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      line-height: 1.55;
+    }
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <h1>CanopyCat <span class="badge">0 dependencies</span></h1>
+        <p id="subtitle">A tiny pixel seasonal tree &amp; interactive cat companion for any website.</p>
+      </div>
+      <div class="top-actions">
+        <button id="langBtn" class="btn">中文</button>
+        <button id="themeBtn" class="btn">🌙 Dark</button>
+        <a class="btn primary" href="https://github.com/liuxsh9/canopy-cat" target="_blank" rel="noopener noreferrer">★ GitHub</a>
+      </div>
+    </header>
+
+    <div class="hero-grid">
+      <div class="stage-card">
+        <div class="stage-hint">
+          <span id="hintLeft">Drag branches · Click the cat to pet · Click tree for settings</span>
+          <span id="statusText"></span>
+        </div>
+        <div id="stageMount" class="stage-mount"></div>
+        <div class="action-bar" id="actionBar"></div>
+      </div>
+
+      <div class="controls-card">
+        <div>
+          <div class="section-title" id="secSeason">Season Tree</div>
+          <div class="season-grid" id="seasonGrid"></div>
+        </div>
+        <div>
+          <div class="section-title" id="secCat">Cat Companion (8 Breeds)</div>
+          <div class="cat-grid" id="catGrid"></div>
+        </div>
+        <div>
+          <div class="section-title" id="secWeather">Weather &amp; Scale</div>
+          <div class="weather-row" id="weatherRow"></div>
+        </div>
+        <div class="slider-row">
+          <div class="slider-head"><span id="sizeLabel">Tree size</span><strong id="sizeValue">170%</strong></div>
+          <input id="sizeSlider" type="range" min="80" max="200" step="5" value="170" />
+        </div>
+      </div>
+    </div>
+
+    <div class="embed-card">
+      <div class="embed-head">
+        <div>
+          <strong id="embedTitle">Embed on your website in 10 seconds</strong>
+        </div>
+        <div class="tabs">
+          <button class="btn active" data-tab="html">HTML</button>
+          <button class="btn" data-tab="js">Vanilla JS</button>
+          <button class="btn" data-tab="react">React</button>
+          <button id="copyBtn" class="btn primary">Copy</button>
+        </div>
+      </div>
+      <pre><code id="embedCode"></code></pre>
+    </div>
+
+    <footer>
+      <span id="creditText">Seasonal tree motion inspired by</span>
+      <a href="https://feralui.dev/pixel-play" target="_blank" rel="noopener noreferrer">FeralUI Pixel Play</a>
+      · MIT License ·
+      <a href="https://github.com/liuxsh9/canopy-cat" target="_blank" rel="noopener noreferrer">liuxsh9/canopy-cat</a>
+    </footer>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

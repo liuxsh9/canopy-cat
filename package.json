@@ -1,0 +1,66 @@
+{
+  "name": "canopy-cat",
+  "version": "0.1.0",
+  "description": "A tiny, zero-dependency pixel seasonal tree & interactive cat companion for any website.",
+  "type": "module",
+  "license": "MIT",
+  "author": "liuxsh9",
+  "homepage": "https://liuxsh9.github.io/canopy-cat/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liuxsh9/canopy-cat.git"
+  },
+  "bugs": {
+    "url": "https://github.com/liuxsh9/canopy-cat/issues"
+  },
+  "keywords": [
+    "pixel-art",
+    "cat",
+    "seasonal-tree",
+    "canvas",
+    "web-component",
+    "widget",
+    "easter-egg",
+    "zero-dependency",
+    "react",
+    "bonsai"
+  ],
+  "main": "./dist/canopy-cat.umd.cjs",
+  "module": "./dist/canopy-cat.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/canopy-cat.js",
+      "require": "./dist/canopy-cat.umd.cjs"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "dev": "vite --config vite.demo.config.js",
+    "build:lib": "vite build --config vite.config.js && vite build --config vite.react.config.js && cp src/index.d.ts src/react.d.ts dist/",
+    "build:demo": "vite build --config vite.demo.config.js",
+    "build": "npm run build:lib && npm run build:demo",
+    "preview": "vite preview --config vite.demo.config.js"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "vite": "^5.4.11"
+  }
+}
