@@ -11,6 +11,7 @@ import {
 } from './core/presets.js';
 
 const PIXEL_PLAY_URL = 'https://feralui.dev/pixel-play';
+const CANOPY_CAT_URL = 'https://github.com/liuxsh9/canopy-cat';
 
 export const PANEL_CSS = `
 :host {
@@ -198,7 +199,13 @@ export const PANEL_CSS = `
 }
 
 .cc-source p {
-  margin: 0 0 3px;
+  margin: 0 0 4px;
+}
+
+.cc-source-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
 }
 
 .cc-source a {
@@ -363,12 +370,20 @@ export function createSettingsPanel(doc, { getOptions, update, reset, regrow, on
       p.textContent = lang === 'zh'
         ? '季节树动画灵感来自 FeralUI 的 Pixel Play。'
         : 'Seasonal tree motion inspired by Pixel Play from FeralUI.';
+      const links = doc.createElement('div');
+      links.className = 'cc-source-links';
       const a = doc.createElement('a');
       a.href = PIXEL_PLAY_URL;
       a.target = '_blank';
       a.rel = 'noopener noreferrer';
       a.textContent = lang === 'zh' ? '查看原作 · feralui.dev' : 'View original · feralui.dev';
-      src.append(p, a);
+      const repo = doc.createElement('a');
+      repo.href = CANOPY_CAT_URL;
+      repo.target = '_blank';
+      repo.rel = 'noopener noreferrer';
+      repo.textContent = lang === 'zh' ? '开源项目 · CanopyCat' : 'Open source · CanopyCat';
+      links.append(a, repo);
+      src.append(p, links);
       body.appendChild(src);
     }
 
