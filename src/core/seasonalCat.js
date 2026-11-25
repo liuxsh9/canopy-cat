@@ -964,6 +964,10 @@ export function createSeasonalCat({ document: doc, root, branches, fallingLeaves
       if (action === 'nap') { enter('nap', rand(20, 35)); return true; }
       if (action === 'stretch') { enter('stretch', 2.4); return true; }
       if (action === 'stroll') { pickStrollTarget(false); return true; }
+      if (action === 'chase') {
+        const leaf = findChasableLeaf();
+        if (leaf) { targetLeaf = leaf; enter('crouch', 0.32); return true; }
+      }
       return false;
     },
   };
