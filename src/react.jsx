@@ -3,7 +3,7 @@ import { mountCanopyCat } from './mount.js';
 
 export const CanopyCat = forwardRef(function CanopyCat(
   {
-    tree = 'auto',
+    tree = 'maple',
     cat = 'auto',
     weather = 'breezy',
     direction = 'right',

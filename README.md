@@ -37,7 +37,7 @@
 ## Highlights
 
 - **Zero runtime dependencies** — pure HTML5 Canvas & procedural pixel art (~35 kB gzipped).
-- **4 seasonal trees with calendar auto-switching** — `tree="auto"` automatically adapts to Spring Cherry, Summer Silk, Autumn Maple, or Winter Plum based on the current month.
+- **4 hand-crafted seasonal trees** — switch freely between Spring Cherry, Summer Silk, Autumn Maple, and Winter Plum, each with bespoke foliage, petals, blooms, or snowfall.
 - **8 hand-crafted pixel cat breeds** — 24 animation frames (`30×26` px), freely combinable with any tree, plus `cat="auto"` for high-contrast seasonal pairing.
 - **Quietly alive, never distracting** — tuned for always-on websites (~88% calm resting/napping/loafing, cooldown-gated actions, paused automatically when off-screen or when `prefers-reduced-motion` is enabled).
 - **Delightful micro-interactions**:
@@ -55,12 +55,12 @@
   <img src="./docs/assets/seasons.png" alt="Four Seasonal Trees" width="880" />
 </div>
 
-| Key | Season | Months (`tree="auto"`) | Auto-Paired Cat | Signature Detail |
-| --- | --- | --- | --- | --- |
-| `cherry` | Spring Cherry | Mar – May | Calico | Drifting pink cherry petals |
-| `silk` | Summer Silk Tree | Jun – Aug | Tuxedo | Floating silky pink-white blooms |
-| `maple` | Autumn Maple | Sep – Nov | Russian Blue-White | Multi-tone crimson & gold falling leaves |
-| `plum` | Winter Plum | Dec – Feb | Ginger Tabby | Snowfall & layered branch snow under perched cats |
+| Key | Tree | Auto-Paired Cat | Signature Detail |
+| --- | --- | --- | --- |
+| `cherry` | Spring Cherry | Calico | Drifting pink cherry petals |
+| `silk` | Summer Silk Tree | Tuxedo | Floating silky pink-white blooms |
+| `maple` | Autumn Maple *(default)* | Russian Blue-White | Multi-tone crimson & gold falling leaves |
+| `plum` | Winter Plum | Ginger Tabby | Snowfall & layered branch snow under perched cats |
 
 ---
 
@@ -81,7 +81,7 @@ Use `cat="auto"` (default) to pair a complementary breed with each tree, `cat="n
 
 ```html
 <script type="module" src="https://unpkg.com/canopy-cat/dist/canopy-cat.js"></script>
-<canopy-cat tree="auto" cat="auto" weather="breezy"></canopy-cat>
+<canopy-cat tree="maple" cat="auto" weather="breezy"></canopy-cat>
 ```
 
 ### 2. Vanilla JS / TypeScript (Vue, Svelte, Astro, VitePress, etc.)
@@ -94,7 +94,7 @@ npm install canopy-cat
 import { mountCanopyCat } from 'canopy-cat';
 
 const companion = mountCanopyCat(document.body, {
-  tree: 'auto',      // 'auto' | 'cherry' | 'silk' | 'maple' | 'plum'
+  tree: 'maple',     // 'cherry' | 'silk' | 'maple' | 'plum'
   cat: 'auto',       // 'auto' | 'none' | breed key
   weather: 'breezy', // 'calm' | 'breezy' | 'storm'
   position: 'bottom-right',
@@ -113,7 +113,7 @@ companion.regrow();                 // regrow fallen foliage
 import { CanopyCat } from 'canopy-cat/react';
 
 export function App() {
-  return <CanopyCat tree="auto" cat="auto" weather="breezy" persist />;
+  return <CanopyCat tree="maple" cat="auto" weather="breezy" persist />;
 }
 ```
 
@@ -123,7 +123,7 @@ export function App() {
 
 | JS Option | HTML Attribute | Default | Values |
 | --- | --- | --- | --- |
-| `tree` | `tree` | `'auto'` | `'auto'`, `'cherry'`, `'silk'`, `'maple'`, `'plum'` |
+| `tree` | `tree` | `'maple'` | `'cherry'`, `'silk'`, `'maple'`, `'plum'` |
 | `cat` | `cat` | `'auto'` | `'auto'`, `'none'`, `'russian-blue'`, `'calico'`, `'tuxedo'`, `'ginger'`, `'silver-tabby'`, `'ragdoll'`, `'american-curl'`, `'orange-rex'` |
 | `weather` | `weather` | `'breezy'` | `'calm'`, `'breezy'`, `'storm'` |
 | `direction` | `wind-direction` | `'right'` | `'left'`, `'right'` |

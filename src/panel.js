@@ -322,14 +322,6 @@ export function createSettingsPanel(doc, { getOptions, update, reset, regrow, on
     const recCatLabel = CAT_BREEDS[recCatKey]?.label;
     const resolvedCat = opts.cat === 'none' ? null : opts.cat === 'auto' ? recCatKey : opts.cat;
 
-    const autoTreeLabel = TREE_TYPES[resolvedTree];
-    const treeOptions = {
-      ...TREE_TYPES,
-      auto: {
-        en: `Auto (${autoTreeLabel.en})`,
-        zh: `随季节自动（${autoTreeLabel.zh}）`,
-      },
-    };
     const catOptions = {
       ...CAT_TYPES,
       auto: recCatLabel
@@ -454,7 +446,7 @@ export function createSettingsPanel(doc, { getOptions, update, reset, regrow, on
     body.appendChild(makeGroup(
       { en: 'Scene & companion', zh: '场景与伴侣' },
       [
-        makeSelect({ en: 'Tree', zh: '树种' }, opts.tree, treeOptions, tree => update({ tree })),
+        makeSelect({ en: 'Tree', zh: '树种' }, opts.tree, TREE_TYPES, tree => update({ tree })),
         makeSelect({ en: 'Cat', zh: '小猫' }, opts.cat, catOptions, cat => update({ cat }), { trailing: previewBadge }),
         makeRange({ en: 'Tree size', zh: '树木大小' }, opts.size, RANGES.size, size => update({ size }), { full: true }),
       ],

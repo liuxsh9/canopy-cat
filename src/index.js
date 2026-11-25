@@ -4,7 +4,6 @@ export {
   CAT_TYPES,
   GUST_OPTIONS,
   RANGES,
-  resolveAutoTree,
   resolveTreeKey,
   TREE_ARTWORKS,
   TREE_STYLES,

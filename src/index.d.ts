@@ -1,5 +1,5 @@
-export type TreeOption = 'auto' | 'cherry' | 'silk' | 'maple' | 'plum';
-export type ResolvedTree = 'cherry' | 'silk' | 'maple' | 'plum';
+export type TreeOption = 'cherry' | 'silk' | 'maple' | 'plum';
+export type ResolvedTree = TreeOption;
 export type CatOption =
   | 'auto'
   | 'none'
@@ -49,8 +49,7 @@ export interface CanopyCatInstance {
 
 export declare function mountCanopyCat(target: Element | string, options?: CanopyCatOptions): CanopyCatInstance;
 export declare function defineCanopyCatElement(tagName?: string): void;
-export declare function resolveAutoTree(date?: Date): ResolvedTree;
-export declare function resolveTreeKey(tree?: TreeOption, date?: Date): ResolvedTree;
+export declare function resolveTreeKey(tree?: TreeOption): ResolvedTree;
 export declare function paintCatPreview(canvas: HTMLCanvasElement, breedKey: Exclude<CatOption, 'auto' | 'none'>): void;
 export declare const CAT_BREED_KEYS: readonly Exclude<CatOption, 'auto' | 'none'>[];
 export declare const CAT_BREEDS: Record<string, { label: { en: string; zh: string }; recommendedFor: ResolvedTree | null }>;

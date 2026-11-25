@@ -37,7 +37,7 @@
 ## 项目亮点
 
 - **零运行时依赖**：纯 HTML5 Canvas 与程序化像素绘制，压缩后仅约 35 kB。
-- **四棵四季树 + 按月份自动换季**：设置 `tree="auto"` 后，会根据访客当前真实月份自动切换春樱、夏合欢、秋枫、冬梅。
+- **四棵手绘四季树**：春樱、夏合欢、秋枫、冬梅自由切换，各自拥有独立的枝叶、花瓣、绒絮或飘雪积雪细节。
 - **8 款手绘像素猫**：24 帧 `30×26` 动作图集，与任意季节树自由混搭，默认 `cat="auto"` 按树种自动推荐高对比度配色。
 - **生动而不打扰的常驻节律**：约 88% 时间静静趴睡、揣手或打盹，动作带防重复冷却；离开视口、切后台或开启系统「减弱动态效果」时自动暂停，几乎零负担。
 - **丰富的微交互彩蛋**：
@@ -55,12 +55,12 @@
   <img src="./docs/assets/seasons.png" alt="四棵四季树" width="880" />
 </div>
 
-| 标识 | 树种 | 自动换季月份（`tree="auto"`） | 随树推荐猫 | 特色细节 |
-| --- | --- | --- | --- | --- |
-| `cherry` | 春日樱花 | 3 – 5 月 | 三花猫 | 飘落樱花瓣 |
-| `silk` | 夏日合欢 | 6 – 8 月 | 燕尾服黑猫 | 随风轻舞的绒花絮 |
-| `maple` | 秋日枫树 | 9 – 11 月 | 蓝白英短 | 多层金红枫叶飘落 |
-| `plum` | 冬日梅花 | 12 – 2 月 | 暖橘虎斑 | 飘雪与枝头积雪分层（不遮挡枝头小猫） |
+| 标识 | 树种 | 随树推荐猫 | 特色细节 |
+| --- | --- | --- | --- |
+| `cherry` | 春日樱花 | 三花猫 | 飘落樱花瓣 |
+| `silk` | 夏日合欢 | 燕尾服黑猫 | 随风轻舞的绒花絮 |
+| `maple` | 秋日枫树 *（默认）* | 蓝白英短 | 多层金红枫叶飘落 |
+| `plum` | 冬日梅花 | 暖橘虎斑 | 飘雪与枝头积雪分层（不遮挡枝头小猫） |
 
 ---
 
@@ -81,7 +81,7 @@
 
 ```html
 <script type="module" src="https://unpkg.com/canopy-cat/dist/canopy-cat.js"></script>
-<canopy-cat tree="auto" cat="auto" weather="breezy" lang="zh"></canopy-cat>
+<canopy-cat tree="maple" cat="auto" weather="breezy" lang="zh"></canopy-cat>
 ```
 
 ### 2. 原生 JS / TypeScript（Vue、Svelte、Astro 等任意前端项目）
@@ -94,7 +94,7 @@ npm install canopy-cat
 import { mountCanopyCat } from 'canopy-cat';
 
 const companion = mountCanopyCat(document.body, {
-  tree: 'auto',       // 'auto' | 'cherry' | 'silk' | 'maple' | 'plum'
+  tree: 'maple',      // 'cherry' | 'silk' | 'maple' | 'plum'
   cat: 'auto',        // 'auto' | 'none' | 任意花色 key
   weather: 'breezy',  // 'calm' | 'breezy' | 'storm'
   lang: 'zh',
@@ -114,7 +114,7 @@ companion.regrow();                 // 让枝叶重新长回
 import { CanopyCat } from 'canopy-cat/react';
 
 export function App() {
-  return <CanopyCat tree="auto" cat="auto" weather="breezy" lang="zh" persist />;
+  return <CanopyCat tree="maple" cat="auto" weather="breezy" lang="zh" persist />;
 }
 ```
 
@@ -124,7 +124,7 @@ export function App() {
 
 | JS 参数 | HTML 属性 | 默认值 | 可选值 |
 | --- | --- | --- | --- |
-| `tree` | `tree` | `'auto'` | `'auto'`, `'cherry'`, `'silk'`, `'maple'`, `'plum'` |
+| `tree` | `tree` | `'maple'` | `'cherry'`, `'silk'`, `'maple'`, `'plum'` |
 | `cat` | `cat` | `'auto'` | `'auto'`, `'none'`, `'russian-blue'`, `'calico'`, `'tuxedo'`, `'ginger'`, `'silver-tabby'`, `'ragdoll'`, `'american-curl'`, `'orange-rex'` |
 | `weather` | `weather` | `'breezy'` | `'calm'`, `'breezy'`, `'storm'` |
 | `direction` | `wind-direction` | `'right'` | `'left'`, `'right'` |

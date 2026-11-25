@@ -2,7 +2,6 @@ import {
   CAT_BREEDS,
   mountCanopyCat,
   paintCatPreview,
-  resolveAutoTree,
   TREE_TYPES,
   WEATHER_PRESETS,
 } from '../src/index.js';
@@ -10,7 +9,7 @@ import {
 const state = {
   lang: navigator.language?.toLowerCase().startsWith('zh') ? 'zh' : 'en',
   theme: 'light',
-  tree: 'auto',
+  tree: 'maple',
   cat: 'auto',
   weather: 'breezy',
   size: 170,
@@ -78,10 +77,9 @@ const instance = mountCanopyCat('#stageMount', {
 });
 
 function buildEmbedCode() {
-  const attrs = [];
-  if (state.tree !== 'auto') attrs.push(`tree="${state.tree}"`);
-  else attrs.push('tree="auto"');
+  const attrs = [`tree="${state.tree}"`];
   if (state.cat !== 'auto') attrs.push(`cat="${state.cat}"`);
+  else attrs.push('cat="auto"');
   if (state.weather !== 'breezy') attrs.push(`weather="${state.weather}"`);
   if (state.size !== 150) attrs.push(`size="${state.size}"`);
   if (state.lang === 'zh') attrs.push('lang="zh"');
@@ -124,20 +122,17 @@ function renderUI() {
   document.getElementById('langBtn').textContent = state.lang === 'en' ? '中文' : 'English';
   document.getElementById('themeBtn').textContent = state.theme === 'light' ? '🌙 Dark' : '☀️ Light';
 
-  const autoSeason = resolveAutoTree();
   const statusEl = document.getElementById('statusText');
-  const resolvedTreeKey = state.tree === 'auto' ? autoSeason : state.tree;
-  statusEl.textContent = `${TREE_TYPES[resolvedTreeKey][state.lang]} · ${WEATHER_PRESETS[state.weather].label[state.lang]}`;
+  statusEl.textContent = `${TREE_TYPES[state.tree][state.lang]} · ${WEATHER_PRESETS[state.weather].label[state.lang]}`;
 
   // Seasons
   const seasonGrid = document.getElementById('seasonGrid');
   seasonGrid.innerHTML = '';
   const seasonMeta = [
-    ['auto', '🗓️', state.lang === 'zh' ? '自动' : 'Auto', TREE_TYPES[autoSeason][state.lang]],
-    ['cherry', '🌸', state.lang === 'zh' ? '春樱' : 'Cherry', state.lang === 'zh' ? '3–5月' : 'Spring'],
-    ['silk', '🌺', state.lang === 'zh' ? '夏合欢' : 'Silk', state.lang === 'zh' ? '6–8月' : 'Summer'],
-    ['maple', '🍁', state.lang === 'zh' ? '秋枫' : 'Maple', state.lang === 'zh' ? '9–11月' : 'Autumn'],
-    ['plum', '❄️', state.lang === 'zh' ? '冬梅' : 'Plum', state.lang === 'zh' ? '12–2月' : 'Winter'],
+    ['cherry', '🌸', state.lang === 'zh' ? '春樱' : 'Cherry', state.lang === 'zh' ? '春' : 'Spring'],
+    ['silk', '🌺', state.lang === 'zh' ? '夏合欢' : 'Silk', state.lang === 'zh' ? '夏' : 'Summer'],
+    ['maple', '🍁', state.lang === 'zh' ? '秋枫' : 'Maple', state.lang === 'zh' ? '秋' : 'Autumn'],
+    ['plum', '❄️', state.lang === 'zh' ? '冬梅' : 'Plum', state.lang === 'zh' ? '冬' : 'Winter'],
   ];
   for (const [key, icon, name, sub] of seasonMeta) {
     const btn = document.createElement('button');

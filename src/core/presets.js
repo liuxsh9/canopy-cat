@@ -12,7 +12,6 @@ export const TREE_ARTWORKS = {
 };
 
 export const TREE_TYPES = {
-  auto: { en: 'Auto (by season)', zh: '随季节自动' },
   cherry: { en: 'Spring cherry', zh: '春日樱花' },
   silk: { en: 'Summer silk tree', zh: '夏日合欢' },
   maple: { en: 'Autumn maple', zh: '秋日枫树' },
@@ -89,23 +88,8 @@ export const RANGES = {
   speed: { min: 0, max: 100, initial: 34, step: 1 },
 };
 
-/**
- * Resolve the seasonal tree for a calendar date (Northern Hemisphere default):
- * Mar–May -> cherry, Jun–Aug -> silk, Sep–Nov -> maple, Dec–Feb -> plum.
- */
-export function resolveAutoTree(date = new Date()) {
-  const month = date.getMonth(); // 0..11
-  if (month >= 2 && month <= 4) return 'cherry';
-  if (month >= 5 && month <= 7) return 'silk';
-  if (month >= 8 && month <= 10) return 'maple';
-  return 'plum';
-}
-
-export function resolveTreeKey(tree = 'auto', date = new Date()) {
-  if (tree === 'auto' || !Object.hasOwn(TREE_STYLES, tree)) {
-    return resolveAutoTree(date);
-  }
-  return tree;
+export function resolveTreeKey(tree = 'maple') {
+  return Object.hasOwn(TREE_STYLES, tree) ? tree : 'maple';
 }
 
 export function normalizeOptions(input = {}) {
@@ -117,7 +101,7 @@ export function normalizeOptions(input = {}) {
     return Math.max(min, Math.min(max, Math.round(n / step) * step));
   };
   return {
-    tree: Object.hasOwn(TREE_TYPES, input.tree) ? input.tree : 'auto',
+    tree: Object.hasOwn(TREE_TYPES, input.tree) ? input.tree : 'maple',
     cat: Object.hasOwn(CAT_TYPES, input.cat) ? input.cat : 'auto',
     weather,
     direction: input.direction === 'left' ? 'left' : 'right',
