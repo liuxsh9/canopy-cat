@@ -11,7 +11,7 @@
     <img src="https://img.shields.io/badge/在线体验-Live_Demo-2563eb?style=for-the-badge" alt="在线体验" />
   </a>
   <a href="https://github.com/liuxsh9/canopy-cat/releases">
-    <img src="https://img.shields.io/github/v/release/liuxsh9/canopy-cat?style=for-the-badge&color=059669" alt="GitHub Release" />
+    <img src="https://img.shields.io/badge/release-v0.1.0-059669?style=for-the-badge" alt="Release v0.1.0" />
   </a>
   <img src="https://img.shields.io/badge/零依赖-0_deps-10b981?style=for-the-badge" alt="零依赖" />
   <img src="https://img.shields.io/badge/gzip-~35_kB-f59e0b?style=for-the-badge" alt="体积" />
