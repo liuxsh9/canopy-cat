@@ -112,9 +112,8 @@ export function App() {
 }
 ```
 
----
-
-## 配置项速查
+<details>
+<summary><strong>配置项速查</strong></summary>
 
 | JS 参数 | HTML 属性 | 默认值 | 可选值 |
 | --- | --- | --- | --- |
@@ -133,6 +132,8 @@ export function App() {
 | `theme` | `theme` | `'auto'` | `'auto'`, `'light'`, `'dark'` |
 | `lang` | `lang` | `'en'` | `'en'`, `'zh'` |
 | `persist` | `persist` | `false` | `true` / `false`（是否本地持久化用户配置） |
+
+</details>
 
 ---
 

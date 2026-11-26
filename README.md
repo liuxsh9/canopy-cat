@@ -111,9 +111,8 @@ export function App() {
 }
 ```
 
----
-
-## Options & Attributes
+<details>
+<summary><strong>Options &amp; Attributes</strong></summary>
 
 | JS Option | HTML Attribute | Default | Values |
 | --- | --- | --- | --- |
@@ -132,6 +131,8 @@ export function App() {
 | `theme` | `theme` | `'auto'` | `'auto'`, `'light'`, `'dark'` |
 | `lang` | `lang` | `'en'` | `'en'`, `'zh'` |
 | `persist` | `persist` | `false` | `true` / `false` (save user tweaks in `localStorage`) |
+
+</details>
 
 ---
 
