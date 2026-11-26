@@ -10,8 +10,8 @@
   <a href="https://liuxsh9.github.io/canopy-cat/">
     <img src="https://img.shields.io/badge/Live_Demo-Play_Now-2563eb?style=for-the-badge" alt="Live Demo" />
   </a>
-  <a href="https://www.npmjs.com/package/canopy-cat">
-    <img src="https://img.shields.io/npm/v/canopy-cat?style=for-the-badge&color=059669" alt="npm version" />
+  <a href="https://github.com/liuxsh9/canopy-cat/releases">
+    <img src="https://img.shields.io/github/v/release/liuxsh9/canopy-cat?style=for-the-badge&color=059669" alt="GitHub Release" />
   </a>
   <img src="https://img.shields.io/badge/dependencies-0-10b981?style=for-the-badge" alt="Zero Dependencies" />
   <img src="https://img.shields.io/badge/gzip-~35_kB-f59e0b?style=for-the-badge" alt="Bundle Size" />
@@ -80,14 +80,14 @@ Use `cat="auto"` (default) to pair a complementary breed with each tree, `cat="n
 ### 1. HTML / Web Component (One Line — Blogs, Docs, Static Sites)
 
 ```html
-<script type="module" src="https://unpkg.com/canopy-cat/dist/canopy-cat.js"></script>
+<script type="module" src="https://liuxsh9.github.io/canopy-cat/canopy-cat.js"></script>
 <canopy-cat tree="maple" cat="auto" weather="breezy"></canopy-cat>
 ```
 
 ### 2. Vanilla JS / TypeScript (Vue, Svelte, Astro, VitePress, etc.)
 
 ```bash
-npm install canopy-cat
+npm install https://github.com/liuxsh9/canopy-cat/releases/latest/download/canopy-cat.tgz
 ```
 
 ```js

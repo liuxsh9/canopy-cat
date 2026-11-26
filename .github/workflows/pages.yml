@@ -25,6 +25,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      - name: Expose library bundles on GitHub Pages
+        run: cp dist/canopy-cat.js dist/canopy-cat.umd.cjs dist-demo/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist-demo

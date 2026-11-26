@@ -10,8 +10,8 @@
   <a href="https://liuxsh9.github.io/canopy-cat/">
     <img src="https://img.shields.io/badge/在线体验-Live_Demo-2563eb?style=for-the-badge" alt="在线体验" />
   </a>
-  <a href="https://www.npmjs.com/package/canopy-cat">
-    <img src="https://img.shields.io/npm/v/canopy-cat?style=for-the-badge&color=059669" alt="npm version" />
+  <a href="https://github.com/liuxsh9/canopy-cat/releases">
+    <img src="https://img.shields.io/github/v/release/liuxsh9/canopy-cat?style=for-the-badge&color=059669" alt="GitHub Release" />
   </a>
   <img src="https://img.shields.io/badge/零依赖-0_deps-10b981?style=for-the-badge" alt="零依赖" />
   <img src="https://img.shields.io/badge/gzip-~35_kB-f59e0b?style=for-the-badge" alt="体积" />
@@ -80,14 +80,14 @@
 ### 1. 一行 HTML 嵌入（最适合个人博客 / Hexo / Hugo / VitePress / 静态页）
 
 ```html
-<script type="module" src="https://unpkg.com/canopy-cat/dist/canopy-cat.js"></script>
+<script type="module" src="https://liuxsh9.github.io/canopy-cat/canopy-cat.js"></script>
 <canopy-cat tree="maple" cat="auto" weather="breezy" lang="zh"></canopy-cat>
 ```
 
 ### 2. 原生 JS / TypeScript（Vue、Svelte、Astro 等任意前端项目）
 
 ```bash
-npm install canopy-cat
+npm install https://github.com/liuxsh9/canopy-cat/releases/latest/download/canopy-cat.tgz
 ```
 
 ```js

@@ -85,7 +85,7 @@ function buildEmbedCode() {
   if (state.lang === 'zh') attrs.push('lang="zh"');
 
   if (state.tab === 'html') {
-    return `<script type="module" src="https://unpkg.com/canopy-cat/dist/canopy-cat.js"></script>\n<canopy-cat ${attrs.join(' ')}></canopy-cat>`;
+    return `<script type="module" src="https://liuxsh9.github.io/canopy-cat/canopy-cat.js"></script>\n<canopy-cat ${attrs.join(' ')}></canopy-cat>`;
   }
   const objLines = [
     `  tree: '${state.tree}',`,
