@@ -7,17 +7,11 @@
 </p>
 
 <p>
-  <a href="https://liuxsh9.github.io/canopy-cat/">
-    <img src="https://img.shields.io/badge/在线体验-Live_Demo-2563eb?style=for-the-badge" alt="在线体验" />
-  </a>
-  <a href="https://github.com/liuxsh9/canopy-cat/releases">
-    <img src="https://img.shields.io/badge/release-v0.1.0-059669?style=for-the-badge" alt="Release v0.1.0" />
-  </a>
+  <a href="https://liuxsh9.github.io/canopy-cat/"><img src="https://img.shields.io/badge/在线体验-Live_Demo-2563eb?style=for-the-badge" alt="在线体验" /></a>
+  <a href="https://github.com/liuxsh9/canopy-cat/releases"><img src="https://img.shields.io/badge/release-v0.1.0-059669?style=for-the-badge" alt="Release v0.1.0" /></a>
   <img src="https://img.shields.io/badge/零依赖-0_deps-10b981?style=for-the-badge" alt="零依赖" />
   <img src="https://img.shields.io/badge/gzip-~35_kB-f59e0b?style=for-the-badge" alt="体积" />
-  <a href="./LICENSE">
-    <img src="https://img.shields.io/badge/license-MIT-64748b?style=for-the-badge" alt="MIT License" />
-  </a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-64748b?style=for-the-badge" alt="MIT License" /></a>
 </p>
 
 <p>
