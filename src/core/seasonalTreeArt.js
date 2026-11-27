@@ -7,6 +7,14 @@ export const SCENE_VIEW_SCALE = SCENE_WIDTH / TREE_WIDTH;
 export const SCENE_INSET = { x: 8, y: 13 };
 export const TWIG_COVERAGE = 1 << 8;
 
+export function sceneDisplaySize(size) {
+  const scale = (size / 100) * SCENE_VIEW_SCALE;
+  return {
+    width: Math.round(SCENE_WIDTH * scale),
+    height: Math.round(SCENE_HEIGHT * scale),
+  };
+}
+
 export const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
 export function grain(x, y, seed) {

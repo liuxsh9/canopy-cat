@@ -1,0 +1,22 @@
+html, body {
+  margin: 0;
+  overflow: hidden;
+  background: transparent;
+  user-select: none;
+}
+
+#pet {
+  line-height: 0;
+}
+
+#move {
+  position: absolute;
+  width: max(14px, 11%);
+  height: max(12px, 12%);
+  transform: translate(-50%, -70%);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: grab;
+  touch-action: none;
+}

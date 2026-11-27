@@ -16,12 +16,14 @@ const state = {
   tab: 'html',
 };
 
+const breedCount = Object.keys(CAT_BREEDS).length;
+
 const I18N = {
   en: {
     subtitle: 'A tiny pixel seasonal tree & interactive cat companion for any website.',
     hintLeft: 'Drag branches · Click the cat to pet · Click tree for settings',
     secSeason: 'Seasonal Tree',
-    secCat: 'Cat Companion (8 Breeds)',
+    secCat: `Cat Companion (${breedCount} Breeds)`,
     secWeather: 'Weather & Size',
     sizeLabel: 'Tree size',
     embedTitle: 'Embed on your website in 10 seconds',
@@ -44,7 +46,7 @@ const I18N = {
     subtitle: '零依赖、轻量级的四季像素树与互动小猫网页伴侣，一行代码即可嵌入任意网站。',
     hintLeft: '拖动树枝晃动落叶 · 点击小猫抚摸 · 点击树打开详细配置',
     secSeason: '四季树木',
-    secCat: '小猫伴侣（8 款花色）',
+    secCat: `小猫伴侣（${breedCount} 款花色）`,
     secWeather: '天气与缩放',
     sizeLabel: '树木大小',
     embedTitle: '10 秒嵌入你的博客或网站',

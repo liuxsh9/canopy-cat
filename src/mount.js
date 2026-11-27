@@ -1,5 +1,5 @@
 import { createSeasonalTree } from './core/seasonalTree.js';
-import { SCENE_HEIGHT, SCENE_VIEW_SCALE, SCENE_WIDTH, TREE_ART_SCALE } from './core/seasonalTreeArt.js';
+import { sceneDisplaySize, SCENE_HEIGHT, SCENE_WIDTH, TREE_ART_SCALE } from './core/seasonalTreeArt.js';
 import { normalizeOptions, resolveTreeKey, TREE_STYLES } from './core/presets.js';
 import { createSettingsPanel, PANEL_CSS } from './panel.js';
 
@@ -58,6 +58,7 @@ export function mountCanopyCat(target, initialOptions = {}) {
   let frameId = null;
   let lastPaint = null;
   let inView = true;
+  let paused = false;
   let pointer = null;
   let ignoreClick = false;
 
@@ -80,9 +81,9 @@ export function mountCanopyCat(target, initialOptions = {}) {
   host.appendChild(wrapper);
 
   function syncCanvasSize() {
-    const pxScale = (options.size / 100) * SCENE_VIEW_SCALE;
-    canvas.style.width = `${Math.round(SCENE_WIDTH * pxScale)}px`;
-    canvas.style.height = `${Math.round(SCENE_HEIGHT * pxScale)}px`;
+    const { width, height } = sceneDisplaySize(options.size);
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
     const styleInfo = TREE_STYLES[resolvedTree];
     const label = styleInfo.settings[options.lang] ?? styleInfo.settings.en;
     stageBtn.title = options.controls ? label : '';
@@ -118,7 +119,7 @@ export function mountCanopyCat(target, initialOptions = {}) {
   function syncLoop() {
     stopLoop();
     if (reducedMotion?.matches) motion?.still();
-    else if (inView && !doc.hidden) frameId = win.requestAnimationFrame(animate);
+    else if (!paused && inView && !doc.hidden) frameId = win.requestAnimationFrame(animate);
   }
 
   function buildMotion() {
@@ -294,6 +295,11 @@ export function mountCanopyCat(target, initialOptions = {}) {
     regrow: () => motion?.growCanopy(frameId !== null && options.growthSpeed > 0),
     poke: (branch) => motion?.poke(branch),
     triggerAction: (action) => motion?.triggerCatAction?.(action) ?? false,
+    setPaused(value) {
+      if (paused === value) return;
+      paused = value;
+      syncLoop();
+    },
     reset: () => {
       options = normalizeOptions(initialOptions);
       buildMotion();

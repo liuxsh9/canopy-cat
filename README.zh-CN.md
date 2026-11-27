@@ -8,7 +8,7 @@
 
 <p>
   <a href="https://liuxsh9.github.io/canopy-cat/"><img src="https://img.shields.io/badge/在线体验-Live_Demo-2563eb?style=for-the-badge" alt="在线体验" /></a>
-  <a href="https://github.com/liuxsh9/canopy-cat/releases"><img src="https://img.shields.io/badge/release-v0.1.0-059669?style=for-the-badge" alt="Release v0.1.0" /></a>
+  <a href="https://github.com/liuxsh9/canopy-cat/releases"><img src="https://img.shields.io/badge/release-v0.2.0-059669?style=for-the-badge" alt="Release v0.2.0" /></a>
   <img src="https://img.shields.io/badge/零依赖-0_deps-10b981?style=for-the-badge" alt="零依赖" />
   <img src="https://img.shields.io/badge/gzip-~35_kB-f59e0b?style=for-the-badge" alt="体积" />
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-64748b?style=for-the-badge" alt="MIT License" /></a>
@@ -32,7 +32,7 @@
 
 - **零运行时依赖**：纯 HTML5 Canvas 与程序化像素绘制，压缩后仅约 35 kB。
 - **四棵手绘四季树**：春樱、夏合欢、秋枫、冬梅自由切换，各自拥有独立的枝叶、花瓣、绒絮或飘雪积雪细节。
-- **8 款手绘像素猫**：24 帧 `30×26` 动作图集，与任意季节树自由混搭，默认 `cat="auto"` 按树种自动推荐高对比度配色。
+- **9 款手绘像素猫**：26 帧 `30×26` 动作图集，与任意季节树自由混搭，默认 `cat="auto"` 按树种自动推荐高对比度配色。
 - **生动而不打扰的常驻节律**：约 88% 时间静静趴睡、揣手或打盹，动作带防重复冷却；离开视口、切后台或开启系统「减弱动态效果」时自动暂停，几乎零负担。
 - **丰富的微交互彩蛋**：
   - **摸摸猫**：点击小猫冒出像素爱心（`♥`）并露出开心表情。
@@ -58,14 +58,24 @@
 
 ---
 
-## 八款像素小猫
+## 九款像素小猫
 
 <div align="center">
-  <img src="./docs/assets/breeds.png" alt="八款像素小猫" width="880" />
+  <img src="./docs/assets/breeds.png" alt="九款像素小猫" width="880" />
 </div>
 
 默认 `cat="auto"` 自动按季节树推荐配色，也可以传 `cat="none"` 仅展示树木，或直接指定任意花色：
-`russian-blue`（蓝白英短）· `calico`（三花猫）· `tuxedo`（燕尾服黑猫）· `ginger`（暖橘虎斑）· `silver-tabby`（银虎斑）· `ragdoll`（蓝双色布偶）· `american-curl`（银白卷耳猫）· `orange-rex`（橘白卷毛猫）。
+`russian-blue`（蓝白英短）· `calico`（三花猫）· `tuxedo`（燕尾服黑猫）· `ginger`（暖橘虎斑）· `silver-tabby`（银虎斑）· `ragdoll`（蓝双色布偶）· `seal-ragdoll`（海豹双色布偶）· `american-curl`（银白卷耳猫）· `orange-rex`（橘白卷毛猫）。
+
+---
+
+## Windows 桌面宠物
+
+从 [GitHub Releases](https://github.com/liuxsh9/canopy-cat/releases) 下载 `CanopyCat-windows-x64.exe` 并双击运行。便携版使用 WebView2，Windows 11 自带，Windows 10 可补装运行时。[WebView2 下载](https://developer.microsoft.com/microsoft-edge/webview2/)
+
+拖动树干底部可以移动宠物，拖树枝可以摇树，点击猫可以抚摸。右键点击系统托盘里的猫咪图标，可以显示或隐藏宠物、切换置顶、调整大小和重置位置，也可更换四季树、猫咪花色和天气。桌面版默认使用海豹双色布偶（`seal-ragdoll`）。开启「鼠标穿透」后，整个宠物窗口会把点击交给下方窗口，从托盘菜单可恢复互动。
+
+在 Windows x64 上安装 [Tauri 构建依赖](https://v2.tauri.app/start/prerequisites/)，依次运行 `npm ci` 和 `npm run build:desktop`。EXE 输出到 `desktop/src-tauri/target/x86_64-pc-windows-msvc/release/canopy-cat.exe`。本地开发可运行 `npm run dev:desktop`。
 
 ---
 
@@ -118,7 +128,7 @@ export function App() {
 | JS 参数 | HTML 属性 | 默认值 | 可选值 |
 | --- | --- | --- | --- |
 | `tree` | `tree` | `'maple'` | `'cherry'`, `'silk'`, `'maple'`, `'plum'` |
-| `cat` | `cat` | `'auto'` | `'auto'`, `'none'`, `'russian-blue'`, `'calico'`, `'tuxedo'`, `'ginger'`, `'silver-tabby'`, `'ragdoll'`, `'american-curl'`, `'orange-rex'` |
+| `cat` | `cat` | `'auto'` | `'auto'`, `'none'`, `'russian-blue'`, `'calico'`, `'tuxedo'`, `'ginger'`, `'silver-tabby'`, `'ragdoll'`, `'seal-ragdoll'`, `'american-curl'`, `'orange-rex'` |
 | `weather` | `weather` | `'breezy'` | `'calm'`, `'breezy'`, `'storm'` |
 | `direction` | `wind-direction` | `'right'` | `'left'`, `'right'` |
 | `speed` | `wind-speed` | `34` | `0` – `100` |
@@ -152,7 +162,7 @@ npm run build   # 构建 dist/ 组件库与 dist-demo/ 演示站
 ## 灵感与致谢
 
 - 季节树的像素美学与物理摇曳灵感来自 [FeralUI 的 Pixel Play](https://feralui.dev/pixel-play)。
-- 宣传图与演示动图中的小猫原型来自作者自家的海豹双色布偶小宝贝；开源代码内置的布偶花色已调整为经典蓝双色布偶。
+- 宣传图、演示动图和 `seal-ragdoll` 花色的原型来自作者自家的海豹双色布偶。
 
 ## 开源协议
 

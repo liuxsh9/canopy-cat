@@ -8,7 +8,7 @@
 
 <p>
   <a href="https://liuxsh9.github.io/canopy-cat/"><img src="https://img.shields.io/badge/Live_Demo-Play_Now-2563eb?style=for-the-badge" alt="Live Demo" /></a>
-  <a href="https://github.com/liuxsh9/canopy-cat/releases"><img src="https://img.shields.io/badge/release-v0.1.0-059669?style=for-the-badge" alt="Release v0.1.0" /></a>
+  <a href="https://github.com/liuxsh9/canopy-cat/releases"><img src="https://img.shields.io/badge/release-v0.2.0-059669?style=for-the-badge" alt="Release v0.2.0" /></a>
   <img src="https://img.shields.io/badge/dependencies-0-10b981?style=for-the-badge" alt="Zero Dependencies" />
   <img src="https://img.shields.io/badge/gzip-~35_kB-f59e0b?style=for-the-badge" alt="Bundle Size" />
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-64748b?style=for-the-badge" alt="MIT License" /></a>
@@ -32,7 +32,7 @@
 
 - **Zero runtime dependencies** — pure HTML5 Canvas & procedural pixel art (~35 kB gzipped).
 - **4 hand-crafted seasonal trees** — switch freely between Spring Cherry, Summer Silk, Autumn Maple, and Winter Plum, each with bespoke foliage, petals, blooms, or snowfall.
-- **8 hand-crafted pixel cat breeds** — 24 animation frames (`30×26` px), freely combinable with any tree, plus `cat="auto"` for high-contrast seasonal pairing.
+- **9 hand-crafted pixel cat breeds** — 26 animation frames (`30×26` px), freely combinable with any tree, plus `cat="auto"` for high-contrast seasonal pairing.
 - **Quietly alive, never distracting** — tuned for always-on websites (~88% calm resting/napping/loafing, cooldown-gated actions, paused automatically when off-screen or when `prefers-reduced-motion` is enabled).
 - **Delightful micro-interactions**:
   - **Pet the cat** — click the cat for floating pixel hearts (`♥`) and happy purr frames.
@@ -58,14 +58,24 @@
 
 ---
 
-## Eight Cat Breeds
+## Nine Cat Breeds
 
 <div align="center">
-  <img src="./docs/assets/breeds.png" alt="Eight Cat Breeds" width="880" />
+  <img src="./docs/assets/breeds.png" alt="Nine Cat Breeds" width="880" />
 </div>
 
 Use `cat="auto"` (default) to pair a complementary breed with each tree, `cat="none"` to show only the tree, or pick any breed directly:
-`russian-blue` · `calico` · `tuxedo` · `ginger` · `silver-tabby` · `ragdoll` · `american-curl` · `orange-rex`.
+`russian-blue` · `calico` · `tuxedo` · `ginger` · `silver-tabby` · `ragdoll` · `seal-ragdoll` · `american-curl` · `orange-rex`.
+
+---
+
+## Windows Desktop Pet
+
+Download and run `CanopyCat-windows-x64.exe` from [GitHub Releases](https://github.com/liuxsh9/canopy-cat/releases). The portable app uses WebView2, which ships with Windows 11 and can be installed on Windows 10. [WebView2 Runtime](https://developer.microsoft.com/microsoft-edge/webview2/)
+
+Drag the base of the tree to move the pet, pull a branch to shake it, and click the cat to pet it. The notification-area menu controls visibility, size, always-on-top, and position reset. It also lets you change the tree, weather, and cat. The desktop starts with Seal Bicolor Ragdoll (`seal-ragdoll`). Enable **Mouse click-through** to pass mouse clicks through the whole pet window, and use the tray menu to restore interaction.
+
+To build on Windows x64, install the [Tauri prerequisites](https://v2.tauri.app/start/prerequisites/), run `npm ci`, then run `npm run build:desktop`. The executable is at `desktop/src-tauri/target/x86_64-pc-windows-msvc/release/canopy-cat.exe`. Use `npm run dev:desktop` for development.
 
 ---
 
@@ -117,7 +127,7 @@ export function App() {
 | JS Option | HTML Attribute | Default | Values |
 | --- | --- | --- | --- |
 | `tree` | `tree` | `'maple'` | `'cherry'`, `'silk'`, `'maple'`, `'plum'` |
-| `cat` | `cat` | `'auto'` | `'auto'`, `'none'`, `'russian-blue'`, `'calico'`, `'tuxedo'`, `'ginger'`, `'silver-tabby'`, `'ragdoll'`, `'american-curl'`, `'orange-rex'` |
+| `cat` | `cat` | `'auto'` | `'auto'`, `'none'`, `'russian-blue'`, `'calico'`, `'tuxedo'`, `'ginger'`, `'silver-tabby'`, `'ragdoll'`, `'seal-ragdoll'`, `'american-curl'`, `'orange-rex'` |
 | `weather` | `weather` | `'breezy'` | `'calm'`, `'breezy'`, `'storm'` |
 | `direction` | `wind-direction` | `'right'` | `'left'`, `'right'` |
 | `speed` | `wind-speed` | `34` | `0` – `100` |
@@ -151,7 +161,7 @@ npm run build   # build dist/ library & dist-demo/ playground
 ## Inspiration & Credits
 
 - Seasonal tree motion & spring-branch aesthetics were inspired by [Pixel Play from FeralUI](https://feralui.dev/pixel-play).
-- Promotional visuals feature a special Seal Bicolor Ragdoll muse; the library ships with a classic Blue Bicolor Ragdoll alongside seven other breeds.
+- The author's Seal Bicolor Ragdoll inspired the cat in the promotional visuals and the `seal-ragdoll` palette.
 
 ## License
 

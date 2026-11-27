@@ -1,6 +1,6 @@
 {
   "name": "canopy-cat",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A tiny, zero-dependency pixel seasonal tree & interactive cat companion for any website.",
   "type": "module",
   "license": "MIT",
@@ -49,6 +49,8 @@
     "dev": "vite --config vite.demo.config.js",
     "build:lib": "vite build --config vite.config.js && vite build --config vite.react.config.js && cp src/index.d.ts src/react.d.ts dist/",
     "build:demo": "vite build --config vite.demo.config.js",
+    "dev:desktop": "cd desktop && tauri dev",
+    "build:desktop": "cd desktop && tauri build --no-bundle --target x86_64-pc-windows-msvc",
     "build": "npm run build:lib && npm run build:demo",
     "prepublishOnly": "npm run build:lib",
     "preview": "vite preview --config vite.demo.config.js"
@@ -62,6 +64,8 @@
     }
   },
   "devDependencies": {
+    "@tauri-apps/api": "2.12.5",
+    "@tauri-apps/cli": "2.12.6",
     "vite": "^5.4.11"
   }
 }

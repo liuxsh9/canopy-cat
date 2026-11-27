@@ -3,7 +3,7 @@ import { clamp, TREE_ART_SCALE } from './seasonalTreeArt.js';
 export const CAT_FRAME_WIDTH = 30;
 export const CAT_FRAME_HEIGHT = 26;
 
-// 8 decoupled cat breeds (freely combinable with any seasonal tree).
+// Cat breeds (freely combinable with any seasonal tree).
 // Pattern tokens:
 //   . = transparent
 //   1 = deep shadow / pupil / paw sole
@@ -180,6 +180,34 @@ export const CAT_BREEDS = {
     fluffyTail: true,
     tailPalette: ['rgb(58 72 94)', 'rgb(96 114 140)', 'rgb(146 164 188)'],
   },
+  'seal-ragdoll': {
+    label: { zh: '海豹双色布偶', en: 'Seal Bicolor Ragdoll' },
+    recommendedFor: null,
+    palette: {
+      1: 'rgb(34 25 22)',
+      2: 'rgb(128 102 82)',
+      3: 'rgb(158 128 102)',
+      4: 'rgb(192 166 140)',
+      5: 'rgb(212 206 198)',
+      6: 'rgb(248 246 243)',
+      7: 'rgb(236 162 168)',
+      8: 'rgb(74 166 238)',
+      9: 'rgb(224 246 255)',
+      a: 'rgb(148 118 92)',
+      b: 'rgb(108 82 64)',
+      s: 'rgb(142 114 90)',
+      m: 'rgb(68 50 40)',
+      M: 'rgb(44 32 26)',
+      K: 'rgb(58 42 34)',
+      v: 'rgb(248 246 244)',
+      w: 'rgb(244 242 238)',
+      W: 'rgb(212 206 198)',
+    },
+    whiteTip: false,
+    tailStripe: false,
+    fluffyTail: true,
+    tailPalette: ['rgb(44 32 26)', 'rgb(68 50 40)', 'rgb(128 102 82)'],
+  },
   'american-curl': {
     label: { zh: '银白卷耳猫', en: 'Silver-White American Curl' },
     recommendedFor: null,
@@ -241,7 +269,7 @@ export const CAT_BREEDS = {
 
 export const CAT_BREED_KEYS = Object.keys(CAT_BREEDS);
 
-// All 24 frames (30x26 px, facing RIGHT, unified row-22 ground contact baseline)
+// Animation frames (30x26 px, facing RIGHT, unified row-22 ground contact baseline)
 const RAW_FRAMES = {
   walk0: [
     '..............................',

@@ -9,6 +9,7 @@ export type CatOption =
   | 'ginger'
   | 'silver-tabby'
   | 'ragdoll'
+  | 'seal-ragdoll'
   | 'american-curl'
   | 'orange-rex';
 export type WeatherPreset = 'calm' | 'breezy' | 'storm';
@@ -43,6 +44,7 @@ export interface CanopyCatInstance {
   regrow(): void;
   poke(branch?: string): void;
   triggerAction(action: CatAction): boolean;
+  setPaused(paused: boolean): void;
   reset(): void;
   destroy(): void;
 }

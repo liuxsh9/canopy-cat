@@ -14,7 +14,34 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build portable Windows x64 executable
+        run: |
+          rustup target add x86_64-pc-windows-msvc
+          npm run build:desktop -- -- --locked
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          Copy-Item desktop/src-tauri/target/x86_64-pc-windows-msvc/release/canopy-cat.exe CanopyCat-windows-x64.exe
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: canopy-cat-windows-x64
+          path: CanopyCat-windows-x64.exe
+          if-no-files-found: error
+
   release:
+    needs: windows
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -45,6 +72,10 @@ jobs:
           cp "$TARBALL" canopy-cat.tgz
           echo "tarball=$TARBALL" >> "$GITHUB_OUTPUT"
 
+      - uses: actions/download-artifact@v4
+        with:
+          name: canopy-cat-windows-x64
+
       - name: Publish GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
@@ -56,10 +87,11 @@ jobs:
             TAG="v$(node -p "require('./package.json').version")"
           fi
 
+          ASSETS=("$TARBALL" canopy-cat.tgz dist/canopy-cat.js CanopyCat-windows-x64.exe)
           if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release upload "$TAG" "$TARBALL" canopy-cat.tgz dist/canopy-cat.js --clobber
+            gh release upload "$TAG" "${ASSETS[@]}" --clobber
           else
-            gh release create "$TAG" "$TARBALL" canopy-cat.tgz dist/canopy-cat.js \
+            gh release create "$TAG" "${ASSETS[@]}" \
               --title "$TAG" \
               --generate-notes
           fi
